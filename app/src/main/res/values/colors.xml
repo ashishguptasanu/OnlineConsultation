@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#303847</color>
+    <color name="colorPrimaryDark">#2a313f</color>
+    <color name="colorAccent">#e64a19</color>
+    <color name="buttonTextColour">#fff</color>
+    <color name="viewColour">#9b9999</color>
+    <color name="viewColour2">#d6d6d6</color>
+    <color name="black_overlay">#e5000000</color>
+    <color name="disabled_text">#797979</color>
+    <color name="white">#fff</color>
+    <color name="orange">#7eff6e40</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="green">#00e676</color>
+    <color name="on_board1">#056b78</color>
+    <color name="on_board2">#ffd630</color>
+    <color name="on_board3">#00cc96</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="light_grey">#546e7a</color>
+    <color name="black">#000000</color>
+</resources>
