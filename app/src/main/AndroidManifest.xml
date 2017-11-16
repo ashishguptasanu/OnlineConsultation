@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.OnlineConsultation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".Network.MyFirebaseMessagingService">
@@ -31,13 +30,38 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Activities.FormActivityLawyer" />
-        <activity android:name=".Activities.LawyerListing" />
-        <activity android:name=".Activities.TimeZoneSelection" />
-        <activity android:name=".Activities.SummaryOnlineConsultation" />
-        <activity android:name=".Activities.PaymentGateway"></activity>
-        <activity android:name=".Activities.PaymentResponse"/>
-        <activity android:name=".Activities.SlotBookingConsultation"/>
+        <activity
+            android:name=".Activities.FormActivityLawyer"
+            android:label="Applicant Details" />
+        <activity
+            android:name=".Activities.LawyerListing"
+            android:label="Consultant" />
+        <activity
+            android:name=".Activities.TimeZoneSelection"
+            android:label="Select Timezone" />
+        <activity
+            android:name=".Activities.SummaryOnlineConsultation"
+            android:label="Summary" />
+        <activity
+            android:name=".Activities.PaymentGateway"
+            android:label="Payment" />
+        <activity
+            android:name=".Activities.PaymentResponse"
+            android:label="Payment Summary" />
+        <activity
+            android:name=".Activities.SlotBookingConsultation"
+            android:label="Book Time Slot" />
+        <activity
+            android:name=".Activities.WebViewVideoChat"
+            android:label="Video Chat" />
+        <activity android:name=".Activities.HomeActivity"
+            android:theme="@style/FullscreenActionBarStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

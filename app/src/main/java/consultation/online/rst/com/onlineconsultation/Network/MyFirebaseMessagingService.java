@@ -25,6 +25,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Objects;
 
+import consultation.online.rst.com.onlineconsultation.Activities.OnlineConsultation;
+import consultation.online.rst.com.onlineconsultation.Activities.WebViewVideoChat;
 import consultation.online.rst.com.onlineconsultation.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -81,18 +83,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendCallHead(String title, final String data) {
         final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        /*Intent acceptIntent = new Intent(this, WebViewVideoChat.class);
+        Intent acceptIntent = new Intent(this, WebViewVideoChat.class);
         acceptIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         acceptIntent.putExtra("url_web_view",title);
         acceptIntent.putExtra("label","Video Consultation");
         acceptIntent.putExtra("order_id",data);
         acceptIntent.setAction("international.rst.com.rstsimplified.Activities.FullscreenActivity");
         PendingIntent acceptPendingIntent = PendingIntent.getActivity(this, 12345, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
-        Intent rejectIntent = new Intent(this, FullscreenActivity.class);
+        Intent rejectIntent = new Intent(this, OnlineConsultation.class);
         acceptIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         acceptIntent.putExtra("order_id",data);
         rejectIntent.setAction("international.rst.com.rstsimplified.Activities.FullscreenActivity");
-        PendingIntent rejectPendingIntent = PendingIntent.getActivity(this,  12346, rejectIntent, PendingIntent.FLAG_ONE_SHOT);*/
+        PendingIntent rejectPendingIntent = PendingIntent.getActivity(this,  12346, rejectIntent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.call_icon);
         builder.setContentTitle("R.Online Consultation");
@@ -106,8 +108,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         r = RingtoneManager.getRingtone(getApplicationContext(),uri);
         r.play();
         builder.setSound(uri);
-        /*builder.addAction(R.drawable.reject, "Reject", rejectPendingIntent);
-        builder.addAction(R.drawable.call_icon, "Accept", acceptPendingIntent);*/
+        builder.addAction(R.drawable.reject, "Reject", rejectPendingIntent);
+        builder.addAction(R.drawable.call_icon, "Accept", acceptPendingIntent);
 
         notificationManager.notify(0, builder.build());
         Handler handler = new Handler(Looper.getMainLooper());

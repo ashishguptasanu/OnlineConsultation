@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Online Consultation</string>
     <string name="summary_details_uae">Your application has been pre-authorized and is now ready to be submitted.\nYour Submission has been given a unique reference number. You will need this number if you want to make enquiries about you application or track the progress of your application.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="consultation_hint">Describe the reason for wanting a specialist opinion. For example Issue/Problem being faced, Oqestion you would like to be answered.</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

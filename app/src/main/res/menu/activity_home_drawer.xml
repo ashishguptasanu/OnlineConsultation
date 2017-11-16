@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<group android:checkableBehavior="single">
+        <item android:id="@+id/home_service"
+            android:icon="@mipmap/home_service_final"
+            android:title="Home"/>
+        <item
+            android:id="@+id/visa_services"
+            android:icon="@mipmap/visa_services_final"
+            android:title="Visa Services" />
+        <item
+            android:id="@+id/passport_services"
+            android:icon="@mipmap/passport_final"
+            android:title="Passport Services" />
+        <item
+            android:id="@+id/immigration_services"
+            android:icon="@mipmap/immigration_final"
+            android:title="Immigration Services" />
+        <item
+        android:id="@+id/airport_services"
+        android:icon="@mipmap/airport_services_final"
+        android:title="Airport Services" />
+        <item
+        android:id="@+id/attestation_service"
+        android:icon="@mipmap/attestations_final"
+        android:title="Attestation Services" />
+        <item
+            android:id="@+id/student_services"
+            android:icon="@mipmap/student_services_final"
+            android:title="Student Services" />
+        <item
+            android:id="@+id/track_application_services"
+            android:icon="@mipmap/track_application_final"
+            android:title="Track Application" />
+    </group>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/my_bookings"
+                android:icon="@mipmap/about_us"
+                android:title="My Bookings" />
+        </menu>
+    </item>-->
+</menu>

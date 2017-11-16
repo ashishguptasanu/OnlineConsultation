@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -31,7 +32,6 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-
 public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyViewHolder> {
     Context context;
     List<Slot> slots = new ArrayList();
@@ -139,6 +139,7 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                 jsonObject.put("process",sharedPreferences.getString("process_name_consultation","") );
                 jsonObject.put("consultant", sharedPreferences.getString("lawyer_id_selected",""));
                 jsonObject.put("date", selectedTimeSlotDate);
+                jsonObject.put("in_date",indianTimeSlot);
                 jsonObject.put("mode", sharedPreferences.getString("consultation_mode_id",""));
                 jsonObject.put("name", sharedPreferences.getString("applicant_name_consultation",""));
                 jsonObject.put("email", sharedPreferences.getString("applicant_email_consultation",""));
@@ -181,7 +182,7 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                     data = obj_data.getInt("booking_id");
                     dataMsg = obj_data.getString("data");
                     if(data > 0){
-                        BookedTimeSlot bookedTimeSlot = new BookedTimeSlot(sharedPreferences.getString("applicant_email_consultation",""),"",sharedPreferences.getString("order_id",""), 0,0, sharedPreferences.getString("fcm_token",""));
+                        BookedTimeSlot bookedTimeSlot = new BookedTimeSlot(sharedPreferences.getString("applicant_email_consultation",""),"",sharedPreferences.getString("order_id",""), 0,0, sharedPreferences.getString("fcm_token", FirebaseInstanceId.getInstance().getToken()));
                         Log.d("Consultation Mode",sharedPreferences.getString("consultationModeId",""));
                         if(Objects.equals(sharedPreferences.getString("consultationModeId", ""), "1")){
                             sendDataToFirebase(bookedTimeSlot);

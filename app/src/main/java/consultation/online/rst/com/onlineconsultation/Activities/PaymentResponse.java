@@ -32,8 +32,6 @@ public class PaymentResponse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_response);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
         Date currentLocalTime = cal.getTime();

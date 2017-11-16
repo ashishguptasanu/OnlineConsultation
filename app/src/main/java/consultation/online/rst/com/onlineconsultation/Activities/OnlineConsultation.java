@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.squareup.picasso.Picasso;
@@ -51,6 +52,7 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_consultation);
         init();
+        FirebaseApp.initializeApp(getApplicationContext());
         Log.d("FireBase_Token", FirebaseInstanceId.getInstance().getToken());
         videoBanner = (ImageView)findViewById(R.id.video_banner);
         Picasso.with(getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fconsultations-mobile-laptop-babylon-right.png?alt=media&token=a4b84b3a-04ec-4370-9cf0-9028124c740e").into(videoBanner);

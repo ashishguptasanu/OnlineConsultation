@@ -95,12 +95,12 @@ public class LawyerListing extends AppCompatActivity {
             adapterLawyer = new AdapterLawyer( lawyerList, getApplicationContext(), modes);
             recyclerLawyer.setAdapter(adapterLawyer);
 
-            sharedPreferences.edit().putString("process_name_consultation","sss-numerologist.com").apply();
+            sharedPreferences.edit().putString("process_name_consultation","uk-immigrationhub.com").apply();
         }
         @Override
         protected String doInBackground(String... urls) {
             try {
-                jsonObject.put("process", "sss-numerologist.com");
+                jsonObject.put("process", "uk-immigrationhub.com");
                 jsonObject.put("living_in", String.valueOf(selectedLivingInId));
             } catch (JSONException e) {
                 e.printStackTrace();

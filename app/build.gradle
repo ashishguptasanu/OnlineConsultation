@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "consultation.online.rst.com.onlineconsultation"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -21,8 +21,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compile files('C:/Users/Ashish/Desktop/RSTSimplified-master/RSTSimplified/libs/checkoutkit.jar')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
+    compile 'com.google.firebase:firebase-invites:11.6.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -40,6 +42,8 @@ dependencies {
     implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
     compile 'com.github.michael-rapp:android-material-dialog:4.0.1'
     compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
+    compile 'com.google.firebase:firebase-core:11.6.0'
+    compile 'com.flaviofaria:kenburnsview:1.0.7'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
