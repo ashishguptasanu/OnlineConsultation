@@ -14,19 +14,16 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/target_view"
-        />
+        android:id="@+id/target_view" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
-
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
@@ -36,7 +33,6 @@
                 android:background="@drawable/shape_white"
                 android:scaleType="fitXY"
                 tools:mockup_opacity="50" />
-
             <android.support.design.widget.CoordinatorLayout
                 android:layout_width="390dp"
                 android:layout_height="390dp"

@@ -15,9 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.OnlineConsultation">
-
-        </activity>
+        <activity android:name=".Activities.OnlineConsultation"></activity>
 
         <service android:name=".Network.MyFirebaseMessagingService">
             <intent-filter>
@@ -29,7 +27,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <activity
             android:name=".Activities.FormActivityLawyer"
             android:label="Applicant Details" />
@@ -54,13 +51,20 @@
         <activity
             android:name=".Activities.WebViewVideoChat"
             android:label="Video Chat" />
-        <activity android:name=".Activities.HomeActivity"
+        <activity
+            android:name=".Activities.HomeActivity"
             android:theme="@style/FullscreenActionBarStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.FullScreenActivity"
+            android:label="@string/title_activity_full_screen"
+            android:theme="@style/FullscreenActionBarStyle"
+            android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
     </application>
 
