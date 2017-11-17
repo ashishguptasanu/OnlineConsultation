@@ -90,9 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         layoutService4.setOnClickListener(this);
         layoutService5.setOnClickListener(this);
         layoutService6.setOnClickListener(this);
-
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,10 +119,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -139,7 +135,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
