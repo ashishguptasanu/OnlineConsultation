@@ -39,7 +39,7 @@
                 android:layout_gravity="center">
 
                 <LinearLayout
-                    android:id="@+id/visa_layout"
+                    android:id="@+id/layout_service1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="160dp"
@@ -64,7 +64,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/attestation_layout"
+                    android:id="@+id/layout_service2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="160dp"
@@ -88,7 +88,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/immigration_layout"
+                    android:id="@+id/layout_service4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="270dp"
@@ -111,7 +111,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/passport_layout"
+                    android:id="@+id/layout_service3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="60dp"
@@ -134,7 +134,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/transfer_layout"
+                    android:id="@+id/layout_service6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="260dp"
@@ -175,7 +175,7 @@
                     android:src="@mipmap/round_logo"/>
 
                 <LinearLayout
-                    android:id="@+id/hotel_layout"
+                    android:id="@+id/layout_service5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="60dp"

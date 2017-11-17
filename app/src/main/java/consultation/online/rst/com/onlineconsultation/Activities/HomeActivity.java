@@ -1,5 +1,6 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,13 +16,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import consultation.online.rst.com.onlineconsultation.R;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ImageView serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5, serviceImg6;
+    LinearLayout layoutService1, layoutService2, layoutService3, layoutService4, layoutService5, layoutService6;
     private static String IMG_URL1 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fflr.png?alt=media&token=8e5baad8-68e0-4774-bae6-2a926816d748";
     private static String IMG_URL2 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbecome_nurologist.png?alt=media&token=0af0b470-765f-4c43-b9e0-78816d7ed755";
     private static String IMG_URL3 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbuy_gems.png?alt=media&token=fc6d7393-24fa-4c05-830f-ffbeea56d608";
@@ -62,18 +66,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initViews() {
-        serviceImg1 =  findViewById(R.id.service_img1);
-        serviceImg2 = (ImageView) findViewById(R.id.service_img2);
-        serviceImg3 = (ImageView) findViewById(R.id.service_img3);
-        serviceImg4 = (ImageView) findViewById(R.id.service_img4);
-        serviceImg5 = (ImageView) findViewById(R.id.service_img5);
-        serviceImg6 = (ImageView) findViewById(R.id.service_img6);
+        serviceImg1 = findViewById(R.id.service_img1);
+        serviceImg2 = findViewById(R.id.service_img2);
+        serviceImg3 = findViewById(R.id.service_img3);
+        serviceImg4 = findViewById(R.id.service_img4);
+        serviceImg5 = findViewById(R.id.service_img5);
+        serviceImg6 = findViewById(R.id.service_img6);
         Picasso.with(getApplicationContext()).load(IMG_URL1).into(serviceImg1);
         Picasso.with(getApplicationContext()).load(IMG_URL2).into(serviceImg2);
         Picasso.with(getApplicationContext()).load(IMG_URL3).into(serviceImg3);
         Picasso.with(getApplicationContext()).load(IMG_URL4).into(serviceImg4);
         Picasso.with(getApplicationContext()).load(IMG_URL5).into(serviceImg5);
         Picasso.with(getApplicationContext()).load(IMG_URL6).into(serviceImg6);
+        layoutService1 = findViewById(R.id.layout_service1);
+        layoutService2 = findViewById(R.id.layout_service2);
+        layoutService3 = findViewById(R.id.layout_service3);
+        layoutService4 = findViewById(R.id.layout_service4);
+        layoutService5 = findViewById(R.id.layout_service5);
+        layoutService6 = findViewById(R.id.layout_service6);
+        layoutService1.setOnClickListener(this);
+        layoutService2.setOnClickListener(this);
+        layoutService3.setOnClickListener(this);
+        layoutService4.setOnClickListener(this);
+        layoutService5.setOnClickListener(this);
+        layoutService6.setOnClickListener(this);
+
     }
 
     @Override
@@ -121,5 +138,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.layout_service1:
+                showToast("Coming Soon");
+                break;
+            case R.id.layout_service2:
+                showToast("Coming Soon");
+                break;
+            case R.id.layout_service3:
+                showToast("Coming Soon");
+                break;
+            case R.id.layout_service4:
+                showToast("Coming Soon");
+                break;
+            case R.id.layout_service5:
+                Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
+                startActivity(intent);
+                break;
+            case R.id.layout_service6:
+                showToast("Coming Soon");
+                break;
+        }
+    }
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
 }
