@@ -60,12 +60,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.FullScreenActivity"
-            android:label="@string/title_activity_full_screen"
-            android:theme="@style/FullscreenActionBarStyle"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
     </application>
 
 </manifest>
