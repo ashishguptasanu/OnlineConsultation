@@ -17,11 +17,6 @@ import consultation.online.rst.com.onlineconsultation.Activities.LawyerListing;
 import consultation.online.rst.com.onlineconsultation.Model.TimeZone;
 import consultation.online.rst.com.onlineconsultation.R;
 
-
-/**
- * Created by Ashish on 27-10-2017.
- */
-
 public class AdapterTimeZone extends RecyclerView.Adapter<AdapterTimeZone.MyViewHolder> implements Filterable {
     List<TimeZone> timeZones = new ArrayList<>();
     List<TimeZone> mFilteredList = new ArrayList<>();

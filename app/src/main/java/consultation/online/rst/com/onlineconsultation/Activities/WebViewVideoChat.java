@@ -1,8 +1,5 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
-/**
- * Created by Ashish on 14-11-2017.
- */
 
 import android.Manifest;
 import android.app.NotificationManager;

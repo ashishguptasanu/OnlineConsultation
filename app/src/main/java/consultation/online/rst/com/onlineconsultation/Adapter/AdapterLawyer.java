@@ -20,9 +20,6 @@ import consultation.online.rst.com.onlineconsultation.Model.Mode;
 import consultation.online.rst.com.onlineconsultation.R;
 
 
-/**
- * Created by Ashish on 13-10-2017.
- */
 
 public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHolder> {
     List<LawyerList> lawyerList = new ArrayList<>();
