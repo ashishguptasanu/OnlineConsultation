@@ -32,61 +32,44 @@ public class AdapterTimeZone extends RecyclerView.Adapter<AdapterTimeZone.MyView
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(AdapterTimeZone.MyViewHolder holder, int position) {
         holder.tvTimeZone.setText(mFilteredList.get(position).getZoneName()+ "-" + mFilteredList.get(position).getCountryName());
     }
-
     @Override
     public int getItemCount() {
         return mFilteredList.size();
     }
-
     @Override
     public Filter getFilter() {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-
                 String charString = charSequence.toString();
-
                 if (charString.isEmpty()) {
 
                     mFilteredList = timeZones;
                 } else {
-
                     List<TimeZone> filteredList = new ArrayList<>();
-
                     for (TimeZone timezones : timeZones) {
-
                         if (timezones.getCountryName().toLowerCase().contains(charString)) {
-
                             filteredList.add(timezones);
                         }
                     }
-
                     mFilteredList = filteredList;
                 }
-
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = mFilteredList;
                 return filterResults;
             }
-
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
-
                 mFilteredList = (List<TimeZone>) filterResults.values;
                 //Log.d("charSequence", String.valueOf(mFilteredList.get(0).getZoneName()));
-
                 notifyDataSetChanged();
             }
-
         };
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvTimeZone;
         public MyViewHolder(View itemView) {
@@ -94,7 +77,6 @@ public class AdapterTimeZone extends RecyclerView.Adapter<AdapterTimeZone.MyView
             tvTimeZone = (TextView)itemView.findViewById(R.id.tv_timezone);
             tvTimeZone.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(context, LawyerListing.class);

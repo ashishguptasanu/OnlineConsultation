@@ -2,7 +2,9 @@ package consultation.online.rst.com.onlineconsultation.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -15,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -99,7 +102,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                         selectedGender = menuItem.getItemId();
                         Log.d("Selected Gender", String.valueOf(menuItem.getItemId()));
                     }
-
                     @Override
                     public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int i) {
                     }
@@ -139,7 +141,8 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                 openBottomSheetGender();
                 break;
             case R.id.mode_video_consultation:
-                openBottomSheetMode();
+                //openBottomSheetMode();
+                showDialogMode();
                 break;
             case R.id.edt_upload_docs_consult:
                 openBottomSheetPickFile();
@@ -159,9 +162,57 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                 }
                 break;
         }
-
     }
 
+    private void showDialogMode() {
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(FormActivityLawyer.this);
+        builderSingle.setIcon(R.drawable.ic_info_outline_black_24dp);
+        builderSingle.setTitle("Select Consultation Mode");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(FormActivityLawyer.this, android.R.layout.select_dialog_singlechoice);
+        if(getIntent().getExtras().containsKey("voice") || getIntent().getExtras().containsKey("video")){
+            if(!Objects.equals(getIntent().getStringExtra("voice"), "0.0")){
+                arrayAdapter.add("Voice Consultation (USD " + getIntent().getExtras().get("voice") + "/hr)");
+            }else{
+                //mode1.setVisibility(View.GONE);
+            }
+            if(getIntent().getExtras().get("video") != "0.0"){
+                arrayAdapter.add("Video Consultation (USD " + getIntent().getExtras().get("video") + "/hr)");
+            }else{
+                //mode2.setVisibility(View.GONE);
+            }
+        }
+
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                final long strName = arrayAdapter.getItemId(which);
+                AlertDialog.Builder builderInner = new AlertDialog.Builder(FormActivityLawyer.this);
+                builderInner.setMessage(arrayAdapter.getItem(which));
+                builderInner.setTitle("Your Selected Mode is");
+                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,int which) {
+                        Log.d("Selected Mode", String.valueOf(strName));
+                        if(which == 0){
+
+                        }else if(which == 1){
+
+                        }
+                    }
+                });
+                builderInner.show();
+            }
+        });
+        builderSingle.show();
+    }
     private void openBottomSheetMode() {
         LinearLayout linearLayout = new LinearLayout(this);
         final TextView mode1 = new TextView(this);
@@ -226,7 +277,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                         selectedGender = menuItem.getItemId();
                         Log.d("Selected Gender", String.valueOf(menuItem.getItemId()));
                     }
-
                     @Override
                     public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int i) {
                     }
@@ -256,8 +306,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                 .addFormDataPart("gender", gender)
                 .addFormDataPart("extra_info", extraInfo)
                 .addFormDataPart("consultation_mode",consultationModeId)
-                /*.addFormDataPart("document_file", lastSegment,
-                        RequestBody.create(MediaType.parse(fileType), file))*/
                 .build();
         Request request = new Request.Builder().url(POST_URL).addHeader("Token", "d75542712c868c1690110db641ba01a").post(requestBody).build();
         okhttp3.Call call = client.newCall(request);
@@ -296,19 +344,15 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                                      }else{
                                          showToast("Unsuccessful");
                                      }
-
                                  } catch (JSONException e) {
                                      e.printStackTrace();
                                  }
-
                              }
                          }
                      }
         );
     }
     private void sendFile(){
-        /*ContentResolver cr = this.getContentResolver();
-        String fileType = cr.getType(Uri.parse("content://"+ uri));*/
         Log.d("uri", uri.toString() + "=" + uri.getLastPathSegment() + "=" + fileType + "=" + new File(uri.getPath()));
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -325,9 +369,7 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                          }
                          @Override
                          public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-
                              if (response.isSuccessful()) {
-
                                  String resp = response.body().string();
                                  Log.d("Resp", resp);
                              }
