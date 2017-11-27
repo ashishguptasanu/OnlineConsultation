@@ -74,21 +74,21 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
     private void initViews() {
-        genderVideoConsultation = (EditText)findViewById(R.id.gender_video_consultation);
+        genderVideoConsultation = findViewById(R.id.gender_video_consultation);
         genderVideoConsultation.setOnClickListener(this);
-        modeVideoConsultation = (EditText)findViewById(R.id.mode_video_consultation);
+        modeVideoConsultation = findViewById(R.id.mode_video_consultation);
         modeVideoConsultation.setOnClickListener(this);
-        extraInfo = (EditText)findViewById(R.id.edt_extra_info_consult);
-        name = (EditText)findViewById(R.id.edt_full_name_consult);
-        mobile = (EditText)findViewById(R.id.edt_mobile_consult);
-        age = (EditText)findViewById(R.id.edt_age_consult);
-        uploadDocs = (EditText)findViewById(R.id.edt_upload_docs_consult);
+        extraInfo = findViewById(R.id.edt_extra_info_consult);
+        name = findViewById(R.id.edt_full_name_consult);
+        mobile = findViewById(R.id.edt_mobile_consult);
+        age = findViewById(R.id.edt_age_consult);
+        uploadDocs = findViewById(R.id.edt_upload_docs_consult);
         uploadDocs.setOnClickListener(this);
         uploadDocs.setFocusable(false);
-        buttonSubmit = (Button)findViewById(R.id.btn_submit_consult);
+        buttonSubmit = findViewById(R.id.btn_submit_consult);
         buttonSubmit.setOnClickListener(this);
-        checkBox = (CheckBox)findViewById(R.id.checkbox_consult);
-        email = (EditText)findViewById(R.id.edt_email_consult);
+        checkBox = findViewById(R.id.checkbox_consult);
+        email = findViewById(R.id.edt_email_consult);
     }
     private void openBottomSheetGender() {
         new BottomSheet.Builder(this)
@@ -127,7 +127,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                             selectedFileType = 1;
                             methodRequiresPermission();
                         }
-                        Log.d("Selected Id", String.valueOf(selectedFileType));
                     }
                     @Override
                     public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int i) {
@@ -164,56 +163,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                 }
                 break;
         }
-    }
-
-    private void showDialogMode() {
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(FormActivityLawyer.this);
-        builderSingle.setIcon(R.drawable.ic_info_outline_black_24dp);
-        builderSingle.setTitle("Select Consultation Mode");
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(FormActivityLawyer.this, android.R.layout.select_dialog_singlechoice);
-        if(getIntent().getExtras().containsKey("voice") || getIntent().getExtras().containsKey("video")){
-            if(!Objects.equals(getIntent().getStringExtra("voice"), "0.0")){
-                arrayAdapter.add("Voice Consultation (USD " + getIntent().getExtras().get("voice") + "/hr)");
-            }else{
-                //mode1.setVisibility(View.GONE);
-            }
-            if(getIntent().getExtras().get("video") != "0.0"){
-                arrayAdapter.add("Video Consultation (USD " + getIntent().getExtras().get("video") + "/hr)");
-            }else{
-                //mode2.setVisibility(View.GONE);
-            }
-        }
-
-        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                final long strName = arrayAdapter.getItemId(which);
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(FormActivityLawyer.this);
-                builderInner.setMessage(arrayAdapter.getItem(which));
-                builderInner.setTitle("Your Selected Mode is");
-                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,int which) {
-                        Log.d("Selected Mode", String.valueOf(strName));
-                        if(which == 0){
-
-                        }else if(which == 1){
-
-                        }
-                    }
-                });
-                builderInner.show();
-            }
-        });
-        builderSingle.show();
     }
     private void openBottomSheetMode() {
         LinearLayout linearLayout = new LinearLayout(this);

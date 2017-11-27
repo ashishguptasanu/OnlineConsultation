@@ -48,7 +48,7 @@ public class LawyerListing extends AppCompatActivity {
         initViews();
     }
     private void initViews() {
-        recyclerLawyer = (RecyclerView)findViewById(R.id.recycler_lawyer);
+        recyclerLawyer = findViewById(R.id.recycler_lawyer);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerLawyer.setLayoutManager(linearLayoutManager);
         if(getIntent().getExtras().containsKey("selected_living_in_id")){
@@ -94,7 +94,6 @@ public class LawyerListing extends AppCompatActivity {
             });
             adapterLawyer = new AdapterLawyer( lawyerList, getApplicationContext(), modes);
             recyclerLawyer.setAdapter(adapterLawyer);
-
             sharedPreferences.edit().putString("process_name_consultation","uk-immigrationhub.com").apply();
         }
         @Override
@@ -130,7 +129,6 @@ public class LawyerListing extends AppCompatActivity {
                      zoneId = obj_data.getString("zoneId");
                      zoneName = obj_data.getString("zoneName");
                     Log.d("Zone Name", zoneName);
-
                     JSONArray dataArray = obj_data.getJSONArray("data");
                     Log.d("Resp", obj_response.toString());
                     for(int i=0; i<dataArray.length(); i++){
