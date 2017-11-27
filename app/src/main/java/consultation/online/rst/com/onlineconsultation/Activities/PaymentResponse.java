@@ -1,4 +1,5 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -6,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -48,6 +50,15 @@ public class PaymentResponse extends AppCompatActivity {
         ammount = (TextView)findViewById(R.id.tv_amount_response);
         tvDate.setText( String.valueOf(formattedDate));
         tvTime.setText(localTime);
+        buttonBack = (Button)findViewById(R.id.button_back_home);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if(sharedPreferences != null && sharedPreferences.getInt("visa_id",0) == 102){
             ammount.setText("USD " + String.valueOf(sharedPreferences.getString("applicant_consultation_fee","")));
             referenceNum.setText(sharedPreferences.getString("order_id",""));

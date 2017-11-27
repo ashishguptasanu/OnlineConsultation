@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -141,8 +143,8 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                 openBottomSheetGender();
                 break;
             case R.id.mode_video_consultation:
-                //openBottomSheetMode();
-                showDialogMode();
+                openBottomSheetMode();
+
                 break;
             case R.id.edt_upload_docs_consult:
                 openBottomSheetPickFile();
@@ -215,23 +217,31 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
     }
     private void openBottomSheetMode() {
         LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setMinimumHeight(100);
         final TextView mode1 = new TextView(this);
         final TextView mode2 = new TextView(this);
+        final TextView tvConsultationMode = new TextView(this);
+        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params2.setMargins(30, 30, 10, 10); //substitute parameters for left, top, right, bottom
+        tvConsultationMode.setTextSize(16);
+        tvConsultationMode.setLayoutParams(params2);
+        tvConsultationMode.setText("Select Consultation Mode");
+        linearLayout.addView(tvConsultationMode);
         linearLayout.addView(mode1);
         linearLayout.addView(mode2);
-        mode1.setPadding(10,10,10,10);
-        mode2.setPadding(10,10,10,10);
-        mode1.setTextSize(18);
-        mode2.setTextSize(18);
-        mode1.setTypeface(null, Typeface.BOLD);
-        mode2.setTypeface(null, Typeface.BOLD);
+        mode1.setPadding(60,20,10,20);
+        mode2.setPadding(60,20,10,40);
+        mode1.setTextColor(Color.parseColor("#000000"));
+        mode2.setTextColor(Color.parseColor("#000000"));
+        mode1.setTextSize(16);
+        mode2.setTextSize(16);
         if(getIntent().getExtras().containsKey("voice") || getIntent().getExtras().containsKey("video")){
-            if(!Objects.equals(getIntent().getStringExtra("voice"), "0.0")){
+            if(!Objects.equals(getIntent().getStringExtra("voice"), 0.0)){
                 mode1.setText("Voice Consultation (USD " + getIntent().getExtras().get("voice") + "/hr)");
             }else{
                 mode1.setVisibility(View.GONE);
             }
-            if(getIntent().getExtras().get("video") != "0.0"){
+            if(!Objects.equals(getIntent().getExtras().get("video"), 0.0)){
                 mode2.setText("Video Consultation (USD " + getIntent().getExtras().get("video") + "/hr)");
             }else{
                 mode2.setVisibility(View.GONE);
@@ -275,7 +285,6 @@ public class FormActivityLawyer extends AppCompatActivity implements View.OnClic
                     public void onSheetItemSelected(@NonNull BottomSheet bottomSheet, MenuItem menuItem) {
                         genderVideoConsultation.setText(menuItem.getTitle());
                         selectedGender = menuItem.getItemId();
-                        Log.d("Selected Gender", String.valueOf(menuItem.getItemId()));
                     }
                     @Override
                     public void onSheetDismissed(@NonNull BottomSheet bottomSheet, @DismissEvent int i) {
