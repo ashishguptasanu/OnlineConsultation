@@ -62,24 +62,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         serviceImg4 = findViewById(R.id.service_img4);
         serviceImg5 = findViewById(R.id.service_img5);
         serviceImg6 = findViewById(R.id.service_img6);
-        Picasso.with(getApplicationContext()).load(IMG_URL1).into(serviceImg1);
+        /*Picasso.with(getApplicationContext()).load(IMG_URL1).into(serviceImg1);
         Picasso.with(getApplicationContext()).load(IMG_URL2).into(serviceImg2);
         Picasso.with(getApplicationContext()).load(IMG_URL3).into(serviceImg3);
         Picasso.with(getApplicationContext()).load(IMG_URL4).into(serviceImg4);
         Picasso.with(getApplicationContext()).load(IMG_URL5).into(serviceImg5);
-        Picasso.with(getApplicationContext()).load(IMG_URL6).into(serviceImg6);
+        Picasso.with(getApplicationContext()).load(IMG_URL6).into(serviceImg6);*/
         layoutService1 = findViewById(R.id.layout_service1);
         layoutService2 = findViewById(R.id.layout_service2);
         layoutService3 = findViewById(R.id.layout_service3);
         layoutService4 = findViewById(R.id.layout_service4);
         layoutService5 = findViewById(R.id.layout_service5);
         layoutService6 = findViewById(R.id.layout_service6);
-        layoutService1.setOnClickListener(this);
+        /*layoutService1.setOnClickListener(this);
         layoutService2.setOnClickListener(this);
         layoutService3.setOnClickListener(this);
         layoutService4.setOnClickListener(this);
         layoutService5.setOnClickListener(this);
-        layoutService6.setOnClickListener(this);
+        layoutService6.setOnClickListener(this);*/
     }
     @Override
     public void onBackPressed() {

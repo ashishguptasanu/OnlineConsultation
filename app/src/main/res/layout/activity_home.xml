@@ -50,13 +50,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
+                        android:src="@mipmap/sunsign_astrology"
                         android:id="@+id/service_img1"/>
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Full Life \nConsultation"
+                        android:text="Your Sunsign"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp"
@@ -75,12 +76,13 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
-                        android:id="@+id/service_img2"/>
+                        android:id="@+id/service_img2"
+                        android:src="@mipmap/horoscope_astrology"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Become a \nNumerologist"
+                        android:text="Daily Horoscope"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
@@ -99,12 +101,13 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
-                        android:id="@+id/service_img4"/>
+                        android:id="@+id/service_img4"
+                        android:src="@mipmap/vastu_astrology"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vastu \nConsultation"
+                        android:text="Vastu Shastra"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
@@ -122,12 +125,13 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
+                        android:src="@mipmap/buy_gems"
                         android:id="@+id/service_img3"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Purchase \nGems"
+                        android:text="Gemstone"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
@@ -146,12 +150,13 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/numerology_astrology"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Business \nConsultation"
+                        android:text="Numerology"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
@@ -172,7 +177,7 @@
                     android:layout_width="105dp"
                     android:layout_height="105dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/logo"/>
+                    android:src="@mipmap/astrology_logo_round"/>
 
                 <LinearLayout
                     android:id="@+id/layout_service5"
@@ -186,12 +191,13 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
-                        android:id="@+id/service_img5"/>
+                        android:id="@+id/service_img5"
+                        android:src="@mipmap/rahukal_astrology"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Personal \nConsultation"
+                        android:text="Rahukaal"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
