@@ -1,6 +1,5 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
-import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.squareup.picasso.Picasso;
 import consultation.online.rst.com.onlineconsultation.R;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ImageView serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5, serviceImg6;
