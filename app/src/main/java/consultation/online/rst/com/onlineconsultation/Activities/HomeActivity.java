@@ -74,12 +74,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         layoutService4 = findViewById(R.id.layout_service4);
         layoutService5 = findViewById(R.id.layout_service5);
         layoutService6 = findViewById(R.id.layout_service6);
-        /*layoutService1.setOnClickListener(this);
+        layoutService1.setOnClickListener(this);
         layoutService2.setOnClickListener(this);
         layoutService3.setOnClickListener(this);
         layoutService4.setOnClickListener(this);
         layoutService5.setOnClickListener(this);
-        layoutService6.setOnClickListener(this);*/
+        layoutService6.setOnClickListener(this);
     }
     @Override
     public void onBackPressed() {
@@ -129,8 +129,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 showToast("Coming Soon");
                 break;
             case R.id.layout_service5:
-                Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
-                startActivity(intent);
+                showToast("Coming Soon");
+                /*Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
+                startActivity(intent);*/
                 break;
             case R.id.layout_service6:
                 showToast("Coming Soon");
