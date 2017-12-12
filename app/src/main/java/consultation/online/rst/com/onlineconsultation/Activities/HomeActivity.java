@@ -1,5 +1,6 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
 import consultation.online.rst.com.onlineconsultation.R;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ImageView serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5, serviceImg6;
@@ -60,12 +64,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         serviceImg4 = findViewById(R.id.service_img4);
         serviceImg5 = findViewById(R.id.service_img5);
         serviceImg6 = findViewById(R.id.service_img6);
-        /*Picasso.with(getApplicationContext()).load(IMG_URL1).into(serviceImg1);
+        Picasso.with(getApplicationContext()).load(IMG_URL1).into(serviceImg1);
         Picasso.with(getApplicationContext()).load(IMG_URL2).into(serviceImg2);
         Picasso.with(getApplicationContext()).load(IMG_URL3).into(serviceImg3);
         Picasso.with(getApplicationContext()).load(IMG_URL4).into(serviceImg4);
         Picasso.with(getApplicationContext()).load(IMG_URL5).into(serviceImg5);
-        Picasso.with(getApplicationContext()).load(IMG_URL6).into(serviceImg6);*/
+        Picasso.with(getApplicationContext()).load(IMG_URL6).into(serviceImg6);
         layoutService1 = findViewById(R.id.layout_service1);
         layoutService2 = findViewById(R.id.layout_service2);
         layoutService3 = findViewById(R.id.layout_service3);
@@ -115,24 +119,42 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.layout_service1:
-                showToast("Coming Soon");
+                Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent.putExtra("url_web_view","https://sss-numerologist.com/services/numerology-reports-predictions");
+                intent.putExtra("label","Full Life Report");
+                startActivity(intent);
                 break;
             case R.id.layout_service2:
+                /*Intent intent1 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent1.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                intent1.putExtra("label","Become a Numerologist");
+                startActivity(intent1);*/
                 showToast("Coming Soon");
                 break;
             case R.id.layout_service3:
+                /*Intent intent2 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent2.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                intent2.putExtra("label","Buy Gems");
+                startActivity(intent2);*/
                 showToast("Coming Soon");
                 break;
             case R.id.layout_service4:
-                showToast("Coming Soon");
+                Intent intent3 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent3.putExtra("url_web_view","https://sss-numerologist.com/services/vastu-consultation-service");
+                intent3.putExtra("label","Vastu Consultation");
+                startActivity(intent3);
                 break;
             case R.id.layout_service5:
-                showToast("Coming Soon");
-                /*Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
-                startActivity(intent);*/
+                Intent intent4 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent4.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                intent4.putExtra("label","Personal Consultation");
+                startActivity(intent4);
                 break;
             case R.id.layout_service6:
-                showToast("Coming Soon");
+                Intent intent5 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent5.putExtra("url_web_view","https://sss-numerologist.com/services/business-consultation-service");
+                intent5.putExtra("label","Business Consultation");
+                startActivity(intent5);
                 break;
         }
     }
