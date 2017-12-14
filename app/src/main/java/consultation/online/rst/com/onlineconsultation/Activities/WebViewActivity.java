@@ -13,11 +13,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-
 import com.tuyenmonkey.mkloader.MKLoader;
-
 import java.util.Objects;
-
 import consultation.online.rst.com.onlineconsultation.R;
 
 
