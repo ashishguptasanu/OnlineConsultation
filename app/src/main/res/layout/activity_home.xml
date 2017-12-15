@@ -45,13 +45,11 @@
                     android:layout_marginLeft="160dp"
                     android:layout_marginTop="45dp"
                     android:orientation="vertical">
-
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:id="@+id/service_img1"/>
-
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
@@ -102,7 +100,6 @@
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/layout_service3"
                     android:layout_width="wrap_content"
