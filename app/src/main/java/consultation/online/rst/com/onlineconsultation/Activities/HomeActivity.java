@@ -119,7 +119,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (view.getId()){
             case R.id.layout_service1:
                 Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent.putExtra("url_web_view","https://sss-numerologist.com/services/numerology-reports-predictions");
+                intent.putExtra("url_web_view","https://testing.sss-numerologist.com/services/numerology-reports-predictions");
                 intent.putExtra("label","Full Life Report");
                 startActivity(intent);
                 break;
@@ -139,19 +139,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.layout_service4:
                 Intent intent3 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent3.putExtra("url_web_view","https://sss-numerologist.com/services/vastu-consultation-service");
+                intent3.putExtra("url_web_view","https://testing.sss-numerologist.com/services/vastu-consultation-service");
                 intent3.putExtra("label","Vastu Consultation");
                 startActivity(intent3);
                 break;
             case R.id.layout_service5:
                 Intent intent4 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent4.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                intent4.putExtra("url_web_view","https://testing.sss-numerologist.com/services/personal-consultation-service");
                 intent4.putExtra("label","Personal Consultation");
                 startActivity(intent4);
                 break;
             case R.id.layout_service6:
                 Intent intent5 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent5.putExtra("url_web_view","https://sss-numerologist.com/services/business-consultation-service");
+                intent5.putExtra("url_web_view","https://testing.sss-numerologist.com/services/business-consultation-service");
                 intent5.putExtra("label","Business Consultation");
                 startActivity(intent5);
                 break;
