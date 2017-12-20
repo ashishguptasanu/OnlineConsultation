@@ -6,7 +6,6 @@ import android.os.Bundle;
 import consultation.online.rst.com.onlineconsultation.R;
 
 public class AboutUs extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

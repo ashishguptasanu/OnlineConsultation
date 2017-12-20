@@ -51,7 +51,6 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         mgr.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
         methodRequiresTwoPermission();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -60,11 +59,8 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
             r.stop();
         }
     }
-
     private void loadViews() {
-
         url = getIntent().getStringExtra("url_web_view");
-
         if(getIntent().getExtras().containsKey("order_id")){
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.cancel(0);
@@ -174,7 +170,7 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         int id = item.getItemId();
         if (id == R.id.action_home) {
             mDatabase.child(order_id).child("isCallInitiated").setValue(4);
-            Intent intent = new Intent(this, OnlineConsultation.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -278,7 +274,7 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         Toast.makeText(getApplicationContext(), "Permission Denied",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
     }
 
