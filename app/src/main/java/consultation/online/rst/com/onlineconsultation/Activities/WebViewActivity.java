@@ -59,7 +59,6 @@ public class WebViewActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         wv1.postUrl(url,postData.getBytes());
-        //wv1.loadUrl(url);
 
         wv1.setWebChromeClient(new WebChromeClient() {
             public void onPermissionRequest(final PermissionRequest request) {

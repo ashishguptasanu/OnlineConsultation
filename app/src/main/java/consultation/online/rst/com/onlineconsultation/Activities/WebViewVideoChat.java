@@ -175,9 +175,6 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
