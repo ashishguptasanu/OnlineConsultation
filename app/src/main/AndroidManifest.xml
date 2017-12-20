@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.OnlineConsultation"></activity>
+        <activity android:name=".Activities.OnlineConsultation" />
 
         <service android:name=".Network.MyFirebaseMessagingService">
             <intent-filter>
@@ -27,6 +27,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".Activities.FormActivityLawyer"
             android:label="Applicant Details" />
@@ -60,7 +61,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.WebViewActivity"/>
+        <activity android:name=".Activities.WebViewActivity" />
+        <activity android:name=".Activities.AboutUs"
+            android:label="About Us"
+            android:parentActivityName=".Activities.HomeActivity">
+        </activity>
     </application>
 
 </manifest>

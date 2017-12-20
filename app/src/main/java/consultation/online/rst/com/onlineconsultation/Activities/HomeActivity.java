@@ -108,7 +108,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(this, AboutUs.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -118,6 +120,40 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_full_life_report) {
+            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+            intent.putExtra("url_web_view","https://testing.sss-numerologist.com/services/numerology-reports-predictions");
+            intent.putExtra("label","Full Life Report");
+            startActivity(intent);
+        }
+        else if(id == R.id.menu_become_numerologist){
+            showToast("Coming Soon");
+        }
+        else if(id == R.id.menu_buy_gems){
+            showToast("Coming Soon");
+        }
+        else if(id == R.id.menu_vastu){
+            Intent intent3 = new Intent(getApplicationContext(), WebViewActivity.class);
+            intent3.putExtra("url_web_view","https://testing.sss-numerologist.com/services/vastu-consultation-service");
+            intent3.putExtra("label","Vastu Consultation");
+            startActivity(intent3);
+        }
+        else if(id == R.id.menu_personal){
+            Intent intent4 = new Intent(getApplicationContext(), WebViewActivity.class);
+            intent4.putExtra("url_web_view","https://testing.sss-numerologist.com/services/personal-consultation-service");
+            intent4.putExtra("label","Personal Consultation");
+            startActivity(intent4);
+        }
+        else if(id == R.id.menu_business){
+            Intent intent5 = new Intent(getApplicationContext(), WebViewActivity.class);
+            intent5.putExtra("url_web_view","https://testing.sss-numerologist.com/services/business-consultation-service");
+            intent5.putExtra("label","Business Consultation");
+            startActivity(intent5);
+        }
+        else if(id == R.id.menu_contact_us){
+            Intent intent6 = new Intent(getApplicationContext(), WebViewActivity.class);
+            intent6.putExtra("url_web_view","https://sss-numerologist.com/contact-us");
+            intent6.putExtra("label","Contact Us");
+            startActivity(intent6);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

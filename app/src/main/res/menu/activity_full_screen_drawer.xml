@@ -29,5 +29,12 @@
             android:icon="@mipmap/buy_gem"
             android:title="Buy Gems" />
     </group>
-
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/menu_contact_us"
+                android:icon="@mipmap/contact_us"
+                android:title="Contact Us"/>
+        </menu>
+    </item>
 </menu>

@@ -1,6 +1,5 @@
 package consultation.online.rst.com.onlineconsultation.Network;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -9,13 +8,11 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,6 +22,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Objects;
 
+import consultation.online.rst.com.onlineconsultation.Activities.HomeActivity;
 import consultation.online.rst.com.onlineconsultation.Activities.OnlineConsultation;
 import consultation.online.rst.com.onlineconsultation.Activities.WebViewVideoChat;
 import consultation.online.rst.com.onlineconsultation.R;
@@ -90,7 +88,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         acceptIntent.putExtra("order_id",data);
         acceptIntent.setAction("international.rst.com.rstsimplified.Activities.FullscreenActivity");
         PendingIntent acceptPendingIntent = PendingIntent.getActivity(this, 12345, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
-        Intent rejectIntent = new Intent(this, OnlineConsultation.class);
+        Intent rejectIntent = new Intent(this, HomeActivity.class);
         acceptIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         acceptIntent.putExtra("order_id",data);
         rejectIntent.setAction("international.rst.com.rstsimplified.Activities.FullscreenActivity");
