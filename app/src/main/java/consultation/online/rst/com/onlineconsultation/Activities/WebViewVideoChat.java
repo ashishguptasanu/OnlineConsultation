@@ -133,7 +133,7 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
                     wv1.destroy();
                     finish();
                     mDatabase.child(order_id).child("isCallInitiated").setValue(4);
-                    Intent intent = new Intent(getApplicationContext(), OnlineConsultation.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
 
                 }

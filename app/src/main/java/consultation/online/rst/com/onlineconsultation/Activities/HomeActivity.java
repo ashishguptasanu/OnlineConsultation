@@ -17,12 +17,16 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.squareup.picasso.Picasso;
 import consultation.online.rst.com.onlineconsultation.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    private String TAG = "HomeActivity.class";
     ImageView serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5, serviceImg6;
     LinearLayout layoutService1, layoutService2, layoutService3, layoutService4, layoutService5, layoutService6;
+    FirebaseFirestore db;
     private static String IMG_URL1 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fflr.png?alt=media&token=8e5baad8-68e0-4774-bae6-2a926816d748";
     private static String IMG_URL2 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbecome_nurologist.png?alt=media&token=0af0b470-765f-4c43-b9e0-78816d7ed755";
     private static String IMG_URL3 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbuy_gems.png?alt=media&token=fc6d7393-24fa-4c05-830f-ffbeea56d608";
@@ -57,6 +61,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         initViews();
     }
     private void initViews() {
+        db = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
         serviceImg1 = findViewById(R.id.service_img1);
         serviceImg2 = findViewById(R.id.service_img2);
         serviceImg3 = findViewById(R.id.service_img3);
@@ -108,7 +117,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_cam) {
+        if (id == R.id.menu_full_life_report) {
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -124,10 +133,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.layout_service2:
-                /*Intent intent1 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent1.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                initFireStore();
+                Intent intent1 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent1.putExtra("url_web_view","https://testing.sss-numerologist.com/Front/Home/get_year_pdf");
                 intent1.putExtra("label","Become a Numerologist");
-                startActivity(intent1);*/
+                startActivity(intent1);
                 showToast("Coming Soon");
                 break;
             case R.id.layout_service3:
@@ -157,6 +167,65 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
+
+    private void initFireStore() {
+        /*db.collection("images")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });*/
+        /*Map<String, Object> user = new HashMap<>();
+        user.put("first", "Alan");
+        user.put("middle", "Mathison");
+        user.put("last", "Turring");
+        user.put("born", 1912);*/
+
+// Add a new document with a generated ID
+        /*db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });*/
+        /*Map<String, Object> user = new HashMap<>();
+        user.put("id", "1");
+        user.put("data", "Gupta");
+
+// Add a new document with a generated ID
+        db.collection("images")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+*/
+    }
+
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }

@@ -1,19 +1,27 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.tuyenmonkey.mkloader.MKLoader;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Objects;
 import consultation.online.rst.com.onlineconsultation.R;
 
@@ -23,6 +31,7 @@ public class WebViewActivity extends AppCompatActivity {
     String url;
     MKLoader crpv;
     TextView tvProgress, tvLoading;
+    String firebaseToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +49,24 @@ public class WebViewActivity extends AppCompatActivity {
         wv1.getSettings().setAppCacheEnabled(true);
         wv1.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         wv1.setWebViewClient(new MyBrowser());
-        wv1.loadUrl(url);
+        firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("token",firebaseToken);
+        String postData = null;
+        try {
+            postData = "device_type=" + URLEncoder.encode("android", "UTF-8") + "&firebase_token=" + URLEncoder.encode(firebaseToken, "UTF-8");
+            Log.d("dataPosted","True");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        wv1.postUrl(url,postData.getBytes());
+        //wv1.loadUrl(url);
+
         wv1.setWebChromeClient(new WebChromeClient() {
             public void onPermissionRequest(final PermissionRequest request) {
                 request.grant(request.getResources());
             }
             public void onProgressChanged(WebView view, int progress) {
+
                 /*Log.d("Progress", String.valueOf(progress));
                 view.setVisibility(View.GONE);
                 crpv.setVisibility(View.VISIBLE);
@@ -75,6 +96,17 @@ public class WebViewActivity extends AppCompatActivity {
                         view.setVisibility(View.VISIBLE);
                     }*/
                 }
+            }
+        });
+        wv1.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype,
+                                        long contentLength) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setType("application/pdf");
+                i.setData(Uri.parse(url));
+                Log.d("URL",url);
+                startActivity(i);
             }
         });
         wv1.setWebViewClient(new WebViewClient() {
@@ -125,7 +157,14 @@ public class WebViewActivity extends AppCompatActivity {
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            String postData = null;
+            try {
+                postData = "device_type=" + URLEncoder.encode("android", "UTF-8") + "&firebase_token=" + URLEncoder.encode(firebaseToken, "UTF-8");
+                Log.d("dataPosted","True");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            wv1.postUrl(url,postData.getBytes());
             return true;
         }
     }

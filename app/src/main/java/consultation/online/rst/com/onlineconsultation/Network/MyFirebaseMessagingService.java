@@ -97,8 +97,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         PendingIntent rejectPendingIntent = PendingIntent.getActivity(this,  12346, rejectIntent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.call_icon);
-        builder.setContentTitle("R.Online Consultation");
-        builder.setContentText("Incoming via R.");
+        builder.setContentTitle("SSS-Numerologist");
+        builder.setContentText("Incoming via sss-numerologist.com");
         builder.setAutoCancel(true);
         builder.setOngoing(true);
         builder.setVibrate(pattern);

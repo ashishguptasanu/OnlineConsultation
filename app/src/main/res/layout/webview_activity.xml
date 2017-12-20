@@ -10,7 +10,6 @@
         app:mk_type="FourPulse"
         android:layout_gravity="center"
         app:mk_color="@color/colorAccent" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

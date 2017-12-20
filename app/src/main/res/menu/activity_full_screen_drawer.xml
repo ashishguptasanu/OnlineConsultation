@@ -5,10 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_cam"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-
+            android:id="@+id/menu_full_life_report"
+            android:icon="@mipmap/full_life_report"
+            android:title="Full Life Report" />
+        <item
+            android:id="@+id/menu_vastu"
+            android:icon="@mipmap/vastu_consultation"
+            android:title="Vastu Consultation" />
+        <item
+            android:id="@+id/menu_business"
+            android:icon="@mipmap/buisness_consultation"
+            android:title="Business Consultation" />
+        <item
+            android:id="@+id/menu_become_numerologist"
+            android:icon="@mipmap/become_a_numerologist"
+            android:title="Become a Numerologist" />
+        <item
+            android:id="@+id/menu_personal"
+            android:icon="@mipmap/personal_consultation"
+            android:title="Personal Consultation" />
+        <item
+            android:id="@+id/menu_buy_gems"
+            android:icon="@mipmap/buy_gem"
+            android:title="Buy Gems" />
     </group>
 
 </menu>
