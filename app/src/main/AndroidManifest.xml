@@ -66,6 +66,9 @@
             android:label="About Us"
             android:parentActivityName=".Activities.HomeActivity">
         </activity>
+        <activity android:name=".Activities.SignInActivity"
+            android:label="SignUp/Login">
+        </activity>
     </application>
 
 </manifest>

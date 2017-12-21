@@ -155,6 +155,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             intent6.putExtra("label","Contact Us");
             startActivity(intent6);
         }
+        else if(id == R.id.menu_sign_in){
+            Intent intent6 = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(intent6);
+        }
+        else if(id == R.id.menu_sign_out){
+            Intent intent6 = new Intent(getApplicationContext(), WebViewActivity.class);
+            startActivity(intent6);
+        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -169,11 +177,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.layout_service2:
-                initFireStore();
+                /*initFireStore();
                 Intent intent1 = new Intent(getApplicationContext(), WebViewActivity.class);
                 intent1.putExtra("url_web_view","https://testing.sss-numerologist.com/Front/Home/get_year_pdf");
                 intent1.putExtra("label","Become a Numerologist");
-                startActivity(intent1);
+                startActivity(intent1);*/
                 showToast("Coming Soon");
                 break;
             case R.id.layout_service3:

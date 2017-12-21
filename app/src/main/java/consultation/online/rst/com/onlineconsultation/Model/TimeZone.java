@@ -3,12 +3,7 @@ package consultation.online.rst.com.onlineconsultation.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Ashish on 27-10-2017.
- */
-
 public class TimeZone {
-
     @SerializedName("countryId")
     @Expose
     private String countryId;

@@ -16,10 +16,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.tuyenmonkey.mkloader.MKLoader;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Objects;
@@ -124,14 +122,6 @@ public class WebViewActivity extends AppCompatActivity {
                         "var footer = document.getElementsByTagName('footer')[0];"
                         + "footer.parentNode.removeChild(footer);" +
                         "})()");
-                /*view.loadUrl("javascript:(function() { " +
-                        "var nav = document.getElementsByTagName('nav')[0];"
-                        + "nav.parentNode.removeChild(nav);" +
-                        "})()");
-                view.loadUrl("javascript:(function() { " +
-                        "var set = document.getElementsByClassName('banner');"
-                        + "set[0].style.margin = '0px';" +
-                        "})()");*/
                 crpv.setVisibility(View.GONE);
                 tvLoading.setVisibility(View.GONE);
                 view.setVisibility(View.VISIBLE);
@@ -143,7 +133,6 @@ public class WebViewActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.web_view_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -191,14 +180,6 @@ public class WebViewActivity extends AppCompatActivity {
                 "var footer = document.getElementsByTagName('footer')[0];"
                 + "footer.parentNode.removeChild(footer);" +
                 "})()");
-        /*view.loadUrl("javascript:(function() { " +
-                "var nav = document.getElementsByTagName('nav')[0];"
-                + "nav.parentNode.removeChild(nav);" +
-                "})()");
-        view.loadUrl("javascript:(function() { " +
-                "var set = document.getElementsByClassName('banner');"
-                + "set[0].style.margin = '0px';" +
-                "})()");*/
         return true;
     }
 }
