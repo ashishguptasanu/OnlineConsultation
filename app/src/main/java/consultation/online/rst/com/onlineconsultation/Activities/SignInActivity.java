@@ -139,7 +139,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 numberSignup.setError("Enter the last name");}
         }else{firstNameSignup.setError("Enter the first name");}
     }
-
     private void signUp(String name, String phone, String email, String password, String code) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -207,7 +206,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                      }
         );
     }
-
     private void showToast(final String message) {
         runOnUiThread(new Runnable() {
             @Override
@@ -216,7 +214,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
-
     private void validateLoginData() {
         if(!TextUtils.isEmpty(loginEmail.getText().toString())){
             if(!TextUtils.isEmpty(loginPassword.getText().toString())){
@@ -228,7 +225,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             }else{loginPassword.setError("Please enter the password", null);}
         }else{loginEmail.setError("Please enter the email");}
     }
-
     private void Login(String email, String password) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)

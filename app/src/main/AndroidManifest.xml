@@ -67,7 +67,8 @@
             android:parentActivityName=".Activities.HomeActivity">
         </activity>
         <activity android:name=".Activities.SignInActivity"
-            android:label="SignUp/Login">
+            android:label="SignUp/Login"
+            android:parentActivityName=".Activities.HomeActivity">
         </activity>
     </application>
 
