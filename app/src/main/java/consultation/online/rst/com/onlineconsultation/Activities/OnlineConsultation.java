@@ -64,9 +64,7 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
     }
 
     private void init() {
-
-            selectedService = 0;
-
+        selectedService = 0;
         getLivingInData();
         chooseService = new String[]{"Select One", "Visa Service", "Passport Service", "Immigration Service", "Attestation Service"};
         serviceForVisa = new String[]{"Select One","United Arab Emirates", "United States of America", "Singapore", "Iran", "Oman"};
