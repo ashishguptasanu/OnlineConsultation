@@ -38,7 +38,7 @@
             <item
                 android:id="@+id/menu_sign_in"
                 android:icon="@mipmap/login_numerologist"
-                android:title="Login/SignUp"/>
+                android:title="Login"/>
             <item
                 android:id="@+id/menu_sign_out"
                 android:icon="@mipmap/logout_numerologist"

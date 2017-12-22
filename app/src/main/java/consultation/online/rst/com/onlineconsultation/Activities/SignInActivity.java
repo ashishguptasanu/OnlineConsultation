@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -79,6 +80,25 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         tvSingUp.setOnClickListener(this);
         btnLogin = (Button)findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(this);
+        loginPassword.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            validateLoginData();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
         btnSignup = (Button)findViewById(R.id.btn_signup);
         btnSignup.setOnClickListener(this);
         layoutLogin = (LinearLayout)findViewById(R.id.layout_login);
@@ -226,11 +246,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         }else{loginEmail.setError("Please enter the email");}
     }
     private void Login(String email, String password) {
+        Log.d("firebase_token",firebaseToken);
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("login_email_id", email)
                 .addFormDataPart("login_password", password)
-                .addFormDataPart("visit_ref", firebaseToken)
+                .addFormDataPart("firebase_token", firebaseToken)
                 .build();
         Request request = new Request.Builder().url(LOGIN_URL).addHeader("Token", "d75542712c868c1690110db641ba01a").post(requestBody).build();
         okhttp3.Call call = client.newCall(request);
@@ -259,6 +280,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                          final JSONObject obj_data=obj_response.getJSONObject("data");
                                          if(obj_data.get("type") == "success"){
                                              progress.dismiss();
+                                             Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                                             startActivity(intent);
                                              showToast("Successfully Logged In.");
                                          }else{
                                              progress.dismiss();
