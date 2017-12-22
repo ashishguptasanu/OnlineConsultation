@@ -19,17 +19,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbb20.CountryCodePicker;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.Objects;
-
 import consultation.online.rst.com.onlineconsultation.R;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -48,8 +43,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     CountryCodePicker ccp;
     String firebaseToken;
     OkHttpClient client = new OkHttpClient();
-    private static String SIGNUP_URL = "https://testing.sss-numerologist.com/signup/api";
-    private static String LOGIN_URL = "https://testing.sss-numerologist.com/login/api";
+    private static String SIGNUP_URL = "https://sss-numerologist.com/signup/api";
+    private static String LOGIN_URL = "https://sss-numerologist.com/login/api";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
