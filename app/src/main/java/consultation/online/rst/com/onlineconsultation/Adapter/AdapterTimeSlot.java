@@ -77,7 +77,7 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvTimeSlot = (TextView)itemView.findViewById(R.id.tv_time_slot);
+            tvTimeSlot = itemView.findViewById(R.id.tv_time_slot);
             tvTimeSlot.setOnClickListener(this);
         }
         @Override
@@ -119,10 +119,9 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                          @Override
                          public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
                              if (response.isSuccessful()) {
-
                              }
                          }
-                     }
+                      }
         );
     }
     private class ConnectionTask extends AsyncTask<String, Void, String> {
@@ -131,7 +130,6 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
             if(data == 0){
                 Toast.makeText(context,dataMsg, Toast.LENGTH_SHORT).show();
             }
-            Log.d("Mode_id",sharedPreferences.getString("consultationModeId",""));
         }
         @Override
         protected String doInBackground(String... urls) {
@@ -151,8 +149,6 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                 jsonObject.put("consultee_time", sharedPreferences.getString("time_zone_id",""));
                 jsonObject.put("currency_code","USD");
                 jsonObject.put("fee",sharedPreferences.getString("applicant_consultation_fee",""));
-
-                Log.d("selected_time_slot",selectedTimeSlotDate);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -183,7 +179,6 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                     dataMsg = obj_data.getString("data");
                     if(data > 0){
                         BookedTimeSlot bookedTimeSlot = new BookedTimeSlot(sharedPreferences.getString("applicant_email_consultation",""),"",sharedPreferences.getString("order_id",""), 0,0, sharedPreferences.getString("fcm_token", FirebaseInstanceId.getInstance().getToken()));
-                        Log.d("Consultation Mode",sharedPreferences.getString("consultationModeId",""));
                         if(Objects.equals(sharedPreferences.getString("consultationModeId", ""), "1")){
                             sendDataToFirebase(bookedTimeSlot);
                         }
