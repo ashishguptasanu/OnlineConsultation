@@ -62,13 +62,25 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.WebViewActivity" />
-        <activity android:name=".Activities.AboutUs"
+        <activity
+            android:name=".Activities.AboutUs"
             android:label="About Us"
-            android:parentActivityName=".Activities.HomeActivity">
-        </activity>
-        <activity android:name=".Activities.SignInActivity"
+            android:parentActivityName=".Activities.HomeActivity"></activity>
+        <activity
+            android:name=".Activities.SignInActivity"
             android:label="SignUp/Login"
             android:parentActivityName=".Activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="sss-numerologist.com"
+                    android:path="/app/login" />
+            </intent-filter>
         </activity>
     </application>
 

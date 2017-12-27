@@ -61,11 +61,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         initViews();
     }
     private void initViews() {
-        db = FirebaseFirestore.getInstance();
+        /*db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
                 .build();
-        db.setFirestoreSettings(settings);
+        db.setFirestoreSettings(settings);*/
         serviceImg1 = findViewById(R.id.service_img1);
         serviceImg2 = findViewById(R.id.service_img2);
         serviceImg3 = findViewById(R.id.service_img3);

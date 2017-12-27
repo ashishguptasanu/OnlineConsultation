@@ -46,23 +46,19 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
     ArrayAdapter<String> visaArrayAdapter;
     int selectedCountryId, selectedServiceFor, selectedConsultationFor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_consultation);
         init();
         FirebaseApp.initializeApp(getApplicationContext());
-        Log.d("FireBase_Token", FirebaseInstanceId.getInstance().getToken());
         videoBanner = (ImageView)findViewById(R.id.video_banner);
         Picasso.with(getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fconsultations-mobile-laptop-babylon-right.png?alt=media&token=a4b84b3a-04ec-4370-9cf0-9028124c740e").into(videoBanner);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
-
     private void init() {
         selectedService = 0;
         getLivingInData();
@@ -78,7 +74,6 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
         spnrLivingIn.setOnItemSelectedListener(this);
         visaArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, livingInData);
         visaArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
     }
     private void initializeChooseServiceSpinner() {
         spnrChooseService = (Spinner)findViewById(R.id.spnr_consultation_choose);
@@ -133,12 +128,9 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
     private void showToast(String s){
         Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
-
     @Override
     public void onClick(View view) {
         if(selectedConsultationFor != 0 && selectedServiceFor != 0 && selectedCountryId != 0){
@@ -159,15 +151,11 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
         call.enqueue(new okhttp3.Callback() {
                          @Override
                          public void onFailure(okhttp3.Call call, IOException e) {
-
                              System.out.println("Registration Error" + e.getMessage());
-
                          }
                          @Override
                          public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-
                              if (response.isSuccessful()) {
-
                                  String resp = response.body().string();
                                  Log.d("Resp", resp);
                                  JSONObject obj = null;
@@ -177,7 +165,6 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
                                      JSONObject obj_status=obj_response.getJSONObject("status");
                                      JSONObject obj_data=obj_response.getJSONObject("data");
                                      //final String msgFinal = obj_data.getString("type");
-
                                      JSONArray dataArray = obj_data.getJSONArray("data");
                                      for(int i=0; i<dataArray.length();i++){
                                          JSONObject dataobject = dataArray.getJSONObject(i);
@@ -189,10 +176,7 @@ public class OnlineConsultation extends AppCompatActivity implements AdapterView
                                      livingInData.add(0, "Select One");
                                      for(int j=0; j<livingIn.size(); j++){
                                          livingInData.add(livingIn.get(j).getCountryName());
-
                                      }
-
-
                                      runOnUiThread(new Runnable() {
                                          @Override
                                          public void run() {

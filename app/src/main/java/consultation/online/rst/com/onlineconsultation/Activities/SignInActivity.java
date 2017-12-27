@@ -3,6 +3,7 @@ package consultation.online.rst.com.onlineconsultation.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -60,6 +61,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         ccp = (CountryCodePicker) findViewById(R.id.ccp);
 
 
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
     }
     private void initializeViews() {
         loginPassword = (EditText)findViewById(R.id.edt_password_login);

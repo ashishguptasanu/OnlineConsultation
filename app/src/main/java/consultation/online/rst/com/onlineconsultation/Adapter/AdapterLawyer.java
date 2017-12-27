@@ -18,13 +18,9 @@ import consultation.online.rst.com.onlineconsultation.Activities.FormActivityLaw
 import consultation.online.rst.com.onlineconsultation.Model.LawyerList;
 import consultation.online.rst.com.onlineconsultation.Model.Mode;
 import consultation.online.rst.com.onlineconsultation.R;
-
-
-
 public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHolder> {
     List<LawyerList> lawyerList = new ArrayList<>();
     List<Mode> modes = new ArrayList<>();
-    String shortDescription, longDescription;
     Context context;
     float modePrizeVoice = (float) 0.0;
     float modePriceVideo = (float) 0.0;
@@ -35,7 +31,6 @@ public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHold
         this.lawyerList = lawyerList;
         this.context = context;
         this.modes = modes;
-
     }
     @Override
     public AdapterLawyer.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,7 +39,6 @@ public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHold
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(AdapterLawyer.MyViewHolder holder, int position) {
         Picasso.with(context).load(lawyerList.get(position).getPerImg()).into(holder.imgLawyer);
@@ -65,7 +59,6 @@ public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHold
                     modePrizeVoice = Float.parseFloat(modes.get(x).getModePrice());
                     Picasso.with(context).load(MODE_URL_2).into(holder.imgMode1);
                 }
-
                 if(Objects.equals(modes.get(x).getModeId(), "1")){
                     modePriceVideo  = Float.parseFloat(modes.get(x).getModePrice());
                     Picasso.with(context).load(MODE_URL_1).into(holder.imgMode2);
@@ -75,38 +68,32 @@ public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHold
                 }else if(modePriceVideo < modePrizeVoice){
                     holder.modePrice.setText("Starts From USD" + modePriceVideo);
                 }
-
             }
         }
     }
-
     @Override
     public int getItemCount() {
         return lawyerList.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvName, tvdesignation, tvLocation, aboutLawyerShort, aboutLawyerLong, modePrice, tvReadDetails;
         ImageView imgLawyer, imgMode1, imgMode2, moveNxt;
-
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView)itemView.findViewById(R.id.tv_lawyer_name);
+            tvName = itemView.findViewById(R.id.tv_lawyer_name);
             //tvName.setOnClickListener(this);
-            imgLawyer = (ImageView)itemView.findViewById(R.id.img_lawyer);
-            tvdesignation = (TextView)itemView.findViewById(R.id.tv_lawyer_designation);
-            tvLocation = (TextView)itemView.findViewById(R.id.tv_lawyer_location);
-            imgMode1 = (ImageView)itemView.findViewById(R.id.img_mode1);
-            imgMode2 = (ImageView)itemView.findViewById(R.id.img_mode2);
-            moveNxt = (ImageView) itemView.findViewById(R.id.move_next_lawyer_listing);
+            imgLawyer = itemView.findViewById(R.id.img_lawyer);
+            tvdesignation = itemView.findViewById(R.id.tv_lawyer_designation);
+            tvLocation = itemView.findViewById(R.id.tv_lawyer_location);
+            imgMode1 = itemView.findViewById(R.id.img_mode1);
+            imgMode2 = itemView.findViewById(R.id.img_mode2);
+            moveNxt =  itemView.findViewById(R.id.move_next_lawyer_listing);
             moveNxt.setOnClickListener(this);
-            aboutLawyerShort = (TextView)itemView.findViewById(R.id.about_lawyer_short_description);
-            aboutLawyerLong = (TextView)itemView.findViewById(R.id.about_lawyer_long_description);
-            modePrice = (TextView)itemView.findViewById(R.id.starting_price_lawyer);
-            tvReadDetails = (TextView)itemView.findViewById(R.id.tv_read_details);
+            aboutLawyerShort = itemView.findViewById(R.id.about_lawyer_short_description);
+            aboutLawyerLong = itemView.findViewById(R.id.about_lawyer_long_description);
+            modePrice = itemView.findViewById(R.id.starting_price_lawyer);
+            tvReadDetails = itemView.findViewById(R.id.tv_read_details);
             tvReadDetails.setOnClickListener(this);
-
-
         }
         @Override
         public void onClick(View view) {
@@ -117,7 +104,6 @@ public class AdapterLawyer extends RecyclerView.Adapter<AdapterLawyer.MyViewHold
                         if(Objects.equals(modes.get(x).getLawyerId(), String.valueOf(getAdapterPosition()))){
                             if(Objects.equals(modes.get(x).getModeId(), "2")){
                                 voice = Float.parseFloat(modes.get(x).getModePrice());
-
                             }
                             if(Objects.equals(modes.get(x).getModeId(), "1")){
                                 video  = Float.parseFloat(modes.get(x).getModePrice());
