@@ -37,7 +37,6 @@
                 android:layout_width="390dp"
                 android:layout_height="390dp"
                 android:layout_gravity="center">
-
                 <LinearLayout
                     android:id="@+id/layout_service1"
                     android:layout_width="wrap_content"
@@ -54,7 +53,7 @@
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Full Life Report"
+                        android:text="Reports \n &amp; Predictions"
                         android:textAlignment="center"
                         android:textColor="@color/black_overlay"
                         android:textSize="12sp" />

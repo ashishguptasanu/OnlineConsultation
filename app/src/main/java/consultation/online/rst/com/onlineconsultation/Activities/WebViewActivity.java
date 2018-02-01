@@ -1,8 +1,10 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,24 +23,34 @@ import com.tuyenmonkey.mkloader.MKLoader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Objects;
+
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotContract;
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotPresenter;
 import consultation.online.rst.com.onlineconsultation.R;
 
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends AppCompatActivity implements  TimeSlotContract.View {
     WebView wv1;
     String url;
     MKLoader crpv;
     TextView tvProgress, tvLoading;
     String firebaseToken;
+    TimeSlotPresenter timeSlotPresenter;
+    String order_id, processId;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity);
         url = getIntent().getStringExtra("url_web_view");
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(getIntent().getStringExtra("label") != null){
             ActionBar actionBar = getSupportActionBar();
             actionBar.setTitle(getIntent().getStringExtra("label"));
         }
+        order_id = getIntent().getStringExtra("order_id");
+        processId = getIntent().getStringExtra("process_id");
         tvLoading = (TextView)findViewById(R.id.tv_loading_webview);
         crpv = (MKLoader) findViewById(R.id.progress_web_view);
         wv1 = (WebView)findViewById(R.id.web_view);
@@ -56,6 +68,7 @@ public class WebViewActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
         wv1.postUrl(url,postData.getBytes());
 
         wv1.setWebChromeClient(new WebChromeClient() {
@@ -111,6 +124,7 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url)
             {
                 if(Objects.equals("https://sss-numerologist.com/", url)){
+
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                 }
@@ -142,6 +156,17 @@ public class WebViewActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onTaskSuccess(String message) {
+
+    }
+
+    @Override
+    public void onTaskFailure(String message) {
+
+    }
+
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

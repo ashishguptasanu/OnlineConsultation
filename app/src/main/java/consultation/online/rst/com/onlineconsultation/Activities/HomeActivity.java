@@ -1,7 +1,11 @@
 package consultation.online.rst.com.onlineconsultation.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,14 +23,20 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
+
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotContract;
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotPresenter;
 import consultation.online.rst.com.onlineconsultation.R;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    private String TAG = "HomeActivity.class";
+public class HomeActivity extends AppCompatActivity implements TimeSlotContract.View, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ImageView serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5, serviceImg6;
     LinearLayout layoutService1, layoutService2, layoutService3, layoutService4, layoutService5, layoutService6;
+    SharedPreferences sharedPreferences;
     FirebaseFirestore db;
+    TimeSlotPresenter mTimeSlotPresenter;
+    AudioManager mgr=null;
     private static String IMG_URL1 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fflr.png?alt=media&token=8e5baad8-68e0-4774-bae6-2a926816d748";
     private static String IMG_URL2 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbecome_nurologist.png?alt=media&token=0af0b470-765f-4c43-b9e0-78816d7ed755";
     private static String IMG_URL3 = "https://firebasestorage.googleapis.com/v0/b/rst-simplified.appspot.com/o/images%2Fbuy_gems.png?alt=media&token=fc6d7393-24fa-4c05-830f-ffbeea56d608";
@@ -40,6 +50,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        mTimeSlotPresenter = new TimeSlotPresenter(this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,14 +70,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        if(sharedPreferences != null && sharedPreferences.getString("order_id_firebase", "").length() > 3){
+            mgr=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            mgr.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+            String processId = sharedPreferences.getString("process_id","");
+            String orderId = sharedPreferences.getString("order_id_firebase", "");
+            String processName = sharedPreferences.getString("process_name","");
+            //mDatabase.child(processId).child(orderId).child("isCallInitiated").setValue(2);
+            mTimeSlotPresenter.timeSlotTask(orderId, processName,"2","2", FirebaseInstanceId.getInstance().getToken());
+            sharedPreferences.edit().putString("reject_status","reject").apply();
+        }
         initViews();
     }
     private void initViews() {
-        /*db = FirebaseFirestore.getInstance();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setPersistenceEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings);*/
         serviceImg1 = findViewById(R.id.service_img1);
         serviceImg2 = findViewById(R.id.service_img2);
         serviceImg3 = findViewById(R.id.service_img3);
@@ -173,23 +190,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.layout_service1:
                 Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
                 intent.putExtra("url_web_view","https://sss-numerologist.com/services/numerology-reports-predictions");
-                intent.putExtra("label","Full Life Report");
+                intent.putExtra("label","Reports & Predictions");
                 startActivity(intent);
                 break;
             case R.id.layout_service2:
-                /*initFireStore();
                 Intent intent1 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent1.putExtra("url_web_view","https://testing.sss-numerologist.com/Front/Home/get_year_pdf");
+                intent1.putExtra("url_web_view","https://sss-numerologist.com/services/become-a-numerologist");
                 intent1.putExtra("label","Become a Numerologist");
-                startActivity(intent1);*/
-                showToast("Coming Soon");
+                startActivity(intent1);
+
                 break;
             case R.id.layout_service3:
-                /*Intent intent2 = new Intent(getApplicationContext(), WebViewActivity.class);
-                intent2.putExtra("url_web_view","https://sss-numerologist.com/services/personal-consultation-service");
+                Intent intent2 = new Intent(getApplicationContext(), WebViewActivity.class);
+                intent2.putExtra("url_web_view","https://sss-numerologist.com/services/purchase-gems-online");
                 intent2.putExtra("label","Buy Gems");
-                startActivity(intent2);*/
-                showToast("Coming Soon");
+                startActivity(intent2);
+
                 break;
             case R.id.layout_service4:
                 Intent intent3 = new Intent(getApplicationContext(), WebViewActivity.class);
@@ -270,7 +286,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 */
     }
 
-    private void showToast(String message){
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+    private void showToast(final String message){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onTaskSuccess(String message) {
+        showToast("Success");
+    }
+
+    @Override
+    public void onTaskFailure(String message) {
+        showToast("Failed");
     }
 }

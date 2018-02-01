@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="consultation.online.rst.com.onlineconsultation">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -55,11 +56,6 @@
         <activity
             android:name=".Activities.HomeActivity"
             android:theme="@style/FullscreenActionBarStyle">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.WebViewActivity" />
         <activity
@@ -80,6 +76,17 @@
                     android:scheme="http"
                     android:host="sss-numerologist.com"
                     android:path="/app/login" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="SSS-Numerologist"
+            android:theme="@style/AppTheme.custom"
+            tools:ignore="MissingPrefix">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

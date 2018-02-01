@@ -94,7 +94,6 @@ public class AdapterTimeSlot extends RecyclerView.Adapter<AdapterTimeSlot.MyView
                         indianTimeSlot = slots.get(getAdapterPosition()).getIndian_slot_date();
                         Toast.makeText(context,"Please Wait..", Toast.LENGTH_SHORT).show();
                         sendRegistrationTimeSlot(sharedPreferences.getString("order_id",""),indianTimeSlot);
-                        Log.d("selectedDate",selectedTimeSlotDate);
                         new ConnectionTask().execute();
                     }
                 });

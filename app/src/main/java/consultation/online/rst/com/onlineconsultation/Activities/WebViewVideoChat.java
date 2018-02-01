@@ -5,11 +5,13 @@ import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,21 +30,26 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.tuyenmonkey.mkloader.MKLoader;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotContract;
+import consultation.online.rst.com.onlineconsultation.APIs.TimeSlotPresenter;
 import consultation.online.rst.com.onlineconsultation.R;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class WebViewVideoChat extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public class WebViewVideoChat extends AppCompatActivity implements EasyPermissions.PermissionCallbacks, TimeSlotContract.View {
     WebView wv1;
     String url, order_id;
     MKLoader crpv;
     TextView tvProgress, tvLoading;
     DatabaseReference mDatabase;
     AudioManager mgr=null;
+    SharedPreferences sharedPreferences;
+    TimeSlotPresenter timeSlotPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +75,7 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         order_id = getIntent().getStringExtra("order_id");
         //Log.d("Database Key", FirebaseDatabase.getInstance().getReference().child("time_slots").child(getIntent().getStringExtra("order_id")).child("isCallInitiated").getKey());
         mDatabase = FirebaseDatabase.getInstance().getReference("time_slots");
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(getIntent().getStringExtra("label") != null){
             ActionBar actionBar = getSupportActionBar();
             actionBar.setTitle(getIntent().getStringExtra("label"));
@@ -85,7 +92,12 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         wv1.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         wv1.setWebViewClient(new MyBrowser());
         wv1.loadUrl(url);
-        mDatabase.child(order_id).child("isCallInitiated").setValue(1);
+        timeSlotPresenter = new TimeSlotPresenter(this);
+        final String processName = sharedPreferences.getString("process_name","");
+        sharedPreferences.edit().putString("reject_status","").apply();
+        sharedPreferences.edit().putString("order_id_firebase","").apply();
+        sharedPreferences.edit().putInt("ignored",1).apply();
+        timeSlotPresenter.timeSlotTask(order_id, processName, "2","1", FirebaseInstanceId.getInstance().getToken());
         wv1.setWebChromeClient(new WebChromeClient() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             public void onPermissionRequest(final PermissionRequest request) {
@@ -128,7 +140,7 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
                 if(Objects.equals("https://appear.in/", url)){
                     wv1.destroy();
                     finish();
-                    mDatabase.child(order_id).child("isCallInitiated").setValue(4);
+                    timeSlotPresenter.timeSlotTask(order_id, processName, "2","4", FirebaseInstanceId.getInstance().getToken());
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
 
@@ -175,6 +187,17 @@ public class WebViewVideoChat extends AppCompatActivity implements EasyPermissio
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onTaskSuccess(String message) {
+
+    }
+
+    @Override
+    public void onTaskFailure(String message) {
+
+    }
+
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
